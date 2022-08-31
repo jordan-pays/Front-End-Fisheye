@@ -7,7 +7,7 @@ class Index{
         const photographersSection = document.querySelector(".photographer_section");
 
         this.photographers.forEach((photographer) => {
-            const photographerModel = photographerFactory(photographer);
+            const photographerModel = new photographerFactory(photographer);
             const userCardDOM = photographerModel.getUserCardDOM();
             userCardDOM.addEventListener("click",()=>{window.location.href=`photographer.html?id=${photographer.id}`})
             photographersSection.appendChild(userCardDOM);
