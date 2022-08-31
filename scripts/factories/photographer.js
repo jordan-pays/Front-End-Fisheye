@@ -7,6 +7,7 @@ function photographerFactory(data) {
         article.setAttribute("id", id)
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture)
+        img.setAttribute("alt", `photo de profile de ${name}`)
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
         const h3 = document.createElement( 'h3' );
