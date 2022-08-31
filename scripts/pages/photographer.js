@@ -31,7 +31,7 @@ class Photographer {
         let count_likes=0;
         this.medias.forEach(media => {
             count_likes +=  media.likes;
-            const mediaModel = mediaFactory(media);
+            const mediaModel = new mediaFactory(media);
             const userCardDOM = mediaModel.getMediaCardDOM();
             // userCardDOM.addEventListener("click",()=>{window.location.href=`photographer.html?id=${photographer.id}`})
             mediaContainer.appendChild(userCardDOM);
