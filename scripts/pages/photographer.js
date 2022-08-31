@@ -50,18 +50,23 @@ async function displayInfoPhotographer(info) {
     img.setAttribute("src", picture)
     img.setAttribute("alt", `photo de profile de ${info.name}`)
     photographerPhoto.appendChild(img);
-   
+    const prices = document.querySelector(".prices");
+    prices.textContent = info.price + "€/jour"
 };
 
 
 async function displayMedia(array_media){
     const mediaContainer = document.querySelector(".container_all_medias");
+    let count_likes=0;
     array_media.forEach(media => {
+        count_likes +=  media.likes;
         const mediaModel = mediaFactory(media);
         const userCardDOM = mediaModel.getMediaCardDOM();
         // userCardDOM.addEventListener("click",()=>{window.location.href=`photographer.html?id=${photographer.id}`})
         mediaContainer.appendChild(userCardDOM);
     });
+    const counter_likes = document.querySelector(".count_likes");
+    counter_likes.textContent = count_likes;
 }
 
 function $_GET(param) {

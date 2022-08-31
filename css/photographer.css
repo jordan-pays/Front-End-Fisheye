@@ -105,7 +105,7 @@ form input {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
-    margin-top: 100px;
+    margin: 100px;
 }
 
 .container_all_medias article{
@@ -146,8 +146,67 @@ form input {
 .container_media_info h3{
     font-size: 24px;
     color: #901C1C;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 250px;
+    white-space: nowrap;
 }
 
-.container_media_info h4{
+.container_heart{
+    display: flex;
+    align-items: center;
+}
+
+.container_heart h4{
     font-size: 16px;
+}
+
+.heart{
+    color: black;
+    font-size: 24px;
+    z-index: 2;
+}
+
+.heart--active{
+    color: #901C1C;
+    font-size: 24px;
+    z-index: 0;
+    opacity: 0;
+    transform-origin: bottom;
+    transition: opacity 500ms linear;
+}
+
+.heart:active .heart--active , .heart:hover  .heart--active , .heart:focus .heart--active {
+    z-index: 2;
+    opacity: 1;
+}
+
+.container_fixed {
+    width: 316px;
+    height: 50px;
+    background-color: #DB8876;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 0px;
+    right: 36px;
+    display: flex;
+    align-items: center;
+    padding: 20px 30px;
+    justify-content: space-between;
+    z-index: 3;
+}
+
+.heart_count {
+    font-size: 24px;
+    color: black;   
+}
+
+.container_count_likes {
+    display: flex;
+    align-items: center;
+}
+
+.count_likes,.prices {
+    font-size: 24px;
+    margin-right: 6px;
 }
