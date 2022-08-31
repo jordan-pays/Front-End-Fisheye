@@ -1,38 +1,4 @@
 //Mettre le code JavaScript lié à la page photographer.html
-async function getInfoPhotographerById(id) {
-    const data = await fetch("../../data/photographers.json").then(response => {
-        return response.json();
-    }).then(jsondata => { 
-        let i=0;
-        let estTrouve = false;
-        while ( i<jsondata.photographers.length && !estTrouve) {
-            if(jsondata.photographers[i].id == id){
-                estTrouve = true;
-            }else{
-                i++;
-            }
-        }
-        return jsondata.photographers[i]
-    });
-    return data
-}
-
-
-async function getMediaByPhotographerId(id){
-    const data = await fetch("../../data/photographers.json").then(response => {
-        return response.json();
-    }).then(jsondata => { 
-        let array_media = [];
-        for(let i=0; i<jsondata.media.length; i++){
-            if(jsondata.media[i].photographerId == id){
-                array_media.push(jsondata.media[i])
-            }
-        }
-        return array_media
-    });
-    return data
-}
-
 async function displayInfoPhotographer(info) {
     const photographerInfo = document.querySelector(".container_info");
     const photographerPhoto = document.querySelector(".container_photo");
@@ -69,24 +35,9 @@ async function displayMedia(array_media){
     counter_likes.textContent = count_likes;
 }
 
-function $_GET(param) {
-	var vars = {};
-	window.location.href.replace( location.hash, '' ).replace( 
-		/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
-		function( m, key, value ) { // callback
-			vars[key] = value !== undefined ? value : '';
-		}
-	);
-
-	if ( param ) {
-		return vars[param] ? vars[param] : null;	
-	}
-	return vars;
-}
-
 async function init() {
     let photographerId = $_GET('id');
-     const info = await getInfoPhotographerById(photographerId);
+     const info = await getPhotographerById(photographerId);
      displayInfoPhotographer(info);
      const medias = await getMediaByPhotographerId(photographerId);
      displayMedia(medias)
