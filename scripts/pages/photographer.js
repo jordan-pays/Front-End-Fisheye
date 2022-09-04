@@ -28,16 +28,11 @@ class Photographer {
     
     displayMedia(){
         const mediaContainer = document.querySelector(".container_all_medias");
-        let count_likes=0;
         this.medias.forEach(media => {
-            count_likes +=  media.likes;
             const mediaModel = new mediaFactory(media);
             const userCardDOM = mediaModel.getMediaCardDOM();
-            // userCardDOM.addEventListener("click",()=>{window.location.href=`photographer.html?id=${photographer.id}`})
             mediaContainer.appendChild(userCardDOM);
         });
-        const counter_likes = document.querySelector(".count_likes");
-        counter_likes.textContent = count_likes;
     }
 
     displayAll(){

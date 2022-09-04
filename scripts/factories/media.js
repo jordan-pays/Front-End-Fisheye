@@ -6,7 +6,8 @@ class mediaFactory {
         this.video = data.video;
         this.likes = data.likes;
         this.photographerId = data.photographerId;
-        this.url = `assets/medias/${data.photographerId}/`
+        this.url = `assets/medias/${data.photographerId}/`;
+        this.myLikes = false;
     }
 
     getMediaCardDOM() {
@@ -26,18 +27,37 @@ class mediaFactory {
         const h3 = document.createElement( 'h3' );
         h3.textContent = this.title;
         const h4 = document.createElement( 'h4' );
+        const heart = document.createElement( 'a' );
+        const icon_heart =  document.createElement( 'i' );
+        heart.addEventListener("click",async()=>{
+            if(this.myLikes == undefined || this.myLikes == false){
+                this.likes += 1;
+                this.myLikes = true;
+                icon_heart.setAttribute("class", "fa-solid fa-heart");
+                heart.setAttribute("class","heart--active");
+                h4.textContent = this.likes;
+                counter_likes.textContent = parseInt(counter_likes.textContent,10) + 1;
+            }else{
+                this.likes -= 1;
+                this.myLikes = false;
+                icon_heart.setAttribute("class", "fa-regular fa-heart");
+                heart.setAttribute("class", "heart");
+                h4.textContent = this.likes;
+                counter_likes.textContent = parseInt(counter_likes.textContent,10) - 1;
+            }
+        })
+        const counter_likes = document.querySelector(".count_likes");
+        console.log()
+        if(counter_likes.textContent.length == 0){
+            counter_likes.textContent = this.likes;
+        }else{
+            counter_likes.textContent = parseInt(counter_likes.textContent,10) + this.likes;
+        }
         h4.textContent = this.likes;
-        const heart = document.createElement( 'span' );
-        heart.setAttribute("class", "heart fa-stack");
-        const black_heart =  document.createElement( 'i' );
-        black_heart.setAttribute("class", "fa-regular fa-heart fa-stack-1x");
-        const heart_active = document.createElement( 'span' );
-        heart_active.setAttribute("class","heart--active");
-        const red_heart = document.createElement( 'i' );
-        red_heart.setAttribute("class", "fa-solid fa-heart fa-stack-1x");
-        heart.appendChild(black_heart)
-        heart_active.appendChild(red_heart)
-        heart.appendChild(heart_active)
+        icon_heart.setAttribute("class", "fa-regular fa-heart");
+        heart.setAttribute("class", "heart");
+        
+        heart.appendChild(icon_heart)
         const div_heart = document.createElement( 'div' );
         div_heart.setAttribute("class", "container_heart");
         div_heart.appendChild(h4)

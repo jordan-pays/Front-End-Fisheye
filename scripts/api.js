@@ -60,13 +60,13 @@ async function addLike(idMedia,idPhotographer){
     const media = await getMediaByPhotographerIdAndMediaId(idMedia,idPhotographer);
     media.likes +=1;
     media.myLikes = true;
+    console.log(media.likes)
 }
 
 async function removeLike(idMedia,idPhotographer){
     const media = await getMediaByPhotographerIdAndMediaId(idMedia,idPhotographer);
     media.likes -=1;
     media.myLikes = false;
-
 }
 
 function $_GET(param) {

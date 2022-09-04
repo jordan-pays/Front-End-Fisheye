@@ -1,5 +1,13 @@
 #contact_modal {
     display: none;
+  position: fixed;
+  z-index: 300;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .photograph-header {
@@ -47,9 +55,11 @@
 }
 
 .modal {
+    position: relative;
+    top:62px;
     border-radius: 5px;
     background-color: #DB8876;
-    width: 50%;
+    width:50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -165,21 +175,16 @@ form input {
     color: black;
     font-size: 24px;
     z-index: 2;
+    cursor: pointer;
 }
 
 .heart--active{
     color: #901C1C;
     font-size: 24px;
-    z-index: 0;
-    opacity: 0;
-    transform-origin: bottom;
-    transition: opacity 500ms linear;
+    z-index: 2;
+    cursor: pointer;
 }
 
-.heart:active .heart--active , .heart:hover  .heart--active , .heart:focus .heart--active {
-    z-index: 2;
-    opacity: 1;
-}
 
 .container_fixed {
     width: 316px;
