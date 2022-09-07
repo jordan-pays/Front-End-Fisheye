@@ -1,4 +1,4 @@
-#contact_modal {
+#contact_modal,#media_modal {
     display: none;
   position: fixed;
   z-index: 300;
@@ -9,6 +9,19 @@
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
 }
+
+#contact_modal .modal {
+    background-color: #DB8876;
+    width:50%;
+
+}
+
+#media_modal .modal {
+    background-color: white;
+    width:75%;
+
+}
+
 
 .photograph-header {
     background-color: #FAFAFA;
@@ -58,14 +71,19 @@
     position: relative;
     top:62px;
     border-radius: 5px;
-    background-color: #DB8876;
-    width:50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 35px;
     margin: auto;
+}
+
+.close {
+    position: absolute;
+    top:40px;
+    right: 40px;
+    cursor: pointer;
 }
 
 .modal header {

@@ -73,12 +73,15 @@ class mediaFactory {
         const img = document.createElement( 'img' );
         img.setAttribute("src", this.url + this.image)
         img.setAttribute("alt", `image s'intitulant ${this.title}`)
+        img.addEventListener("click",displayMediaModal)
+
         return img
     }
 
     getVideoCardDOM() {
         const vid =document.createElement('video');
         vid.setAttribute("controls",true);
+        vid.addEventListener("click",displayMediaModal)
         const src = document.createElement('source');
         src.setAttribute("src", this.url + this.video)
         src.setAttribute("alt", `video s'intitulant ${this.title}`)
