@@ -23,6 +23,13 @@
         <div class="container_photo">
         </div>
       </div>
+
+      <div class="filtre">
+        <h4>Trier Par</h4>
+        <div id="container_filtre" class="container_filtre">
+        </div>
+      </div>
+
       <div class="container_all_medias">
       </div>
       <div class="container_fixed">
@@ -41,7 +48,15 @@
 			<div class="modal">
 				<div>
           <img src="assets/icons/close_brown.svg" class="close" onclick="closeMediaModal()"/>
-          <img/>
+          <div id="previous">
+            <i class="fa-solid fa-chevron-left"></i>
+          </div>
+          <div class="container_media_modal">
+
+          </div>
+          <div id="next">
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
         </div>
 			</div>
 		</div>
@@ -77,5 +92,6 @@
     <script src="scripts/factories/media.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/utils/filtre.js"></script>
   </body>
 </html>

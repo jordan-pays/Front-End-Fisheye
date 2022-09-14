@@ -28,11 +28,42 @@ class Photographer {
     
     displayMedia(){
         const mediaContainer = document.querySelector(".container_all_medias");
-        this.medias.forEach(media => {
+        this.medias.forEach((media, i )=> {
+            media.index = i;
             const mediaModel = new mediaFactory(media);
             const userCardDOM = mediaModel.getMediaCardDOM();
             mediaContainer.appendChild(userCardDOM);
+            document.getElementById(`media_${i}`)?.addEventListener("click", () => {
+                displayMediaModal()
+                this.displayMediaModal(i)
+            })
         });
+    }
+
+    displayMediaModal(index){
+       const container_media = document.querySelector(".container_media_modal");
+        const mediaModal = new mediaFactory(this.medias[index]);
+        const userCardDOM = mediaModal.getModalCard()
+        console.log(userCardDOM)
+        if(container_media.childElementCount == 0){
+            container_media.appendChild(userCardDOM)
+        }else {
+            container_media.replaceChildren(container_media.firstChild,userCardDOM)
+        }
+        document.getElementById("previous").addEventListener("click",()=>{
+            if(index==0){
+                this.displayMediaModal(this.medias.length - 1)
+            }else {
+                this.displayMediaModal(index -1)
+            }
+        })
+        document.getElementById("next").addEventListener("click",()=>{
+            if(index==this.medias.length - 1){
+                this.displayMediaModal(0)
+            }else {
+                this.displayMediaModal(index +1)
+            }
+        })
     }
 
     displayAll(){
@@ -46,8 +77,8 @@ async function init() {
     let photographerId = $_GET('id');
     const photographerInfo = await getPhotographerById(photographerId);
     const medias = await getMediaByPhotographerId(photographerId);
-    const photographer = new Photographer(photographerInfo,medias)
-    photographer.displayAll()
+    const photographer = new Photographer(photographerInfo,medias);
+    photographer.displayAll();
 };
 
 init();

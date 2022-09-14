@@ -16,17 +16,19 @@
 
 }
 
-#media_modal .modal {
-    background-color: white;
-    width:75%;
-
+main{
+    margin: 0 100px;
 }
 
+#media_modal .modal {
+    background-color: white;
+    width:1200px;
+
+}
 
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
-    margin: 0 100px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -46,6 +48,23 @@
     color: #525252;
 }
 
+.container_media_modal {
+    width: 1050px;
+    display: flex;
+    height: 900px;
+    justify-content: center;
+    padding: 0px 30px;
+}
+
+.container_media_modal img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.container_media_modal video {
+    width: 100%;
+    object-fit: cover;
+}
 
 .container_photo img {
     height: 200px;
@@ -84,6 +103,22 @@
     top:40px;
     right: 40px;
     cursor: pointer;
+}
+
+#previous{
+    position: absolute;
+    top:45%;
+    left: 35px;
+    font-size: 60px;
+    color: #911C1C;
+}
+
+#next{
+    position: absolute;
+    top:45%;
+    right: 35px;
+    font-size: 60px;
+    color: #911C1C;
 }
 
 .modal header {
@@ -128,12 +163,67 @@ form input {
     border-radius: 5px;
 }
 
+.filtre h4 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0px;
+}
+
+.filtre {
+    position: relative;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.chevron {
+    font-size: 18px;
+    color: white;
+    padding: 5px;
+}
+
+.container_filtre{
+    width: 170px;
+    height: 55px;
+    border-radius: 5px;
+    background-color: #901C1C;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    top:0px;
+    left: 85px;
+    z-index: 200;
+}
+
+.item_filtre {
+    display: flex;
+    align-items: center;
+    flex : 1;
+    padding: 0px 10px;
+    justify-content: space-between;
+}
+
+.trait {
+    border-top: 1px solid white ;
+    display: none;
+}
+
+
+.item_filtre p {
+    margin: 0px;
+    font-size: 18px;
+    font-weight: 700;
+    color:white;
+}
 
 .container_all_medias {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
-    margin: 100px;
+    margin: 40px 0px;
 }
 
 .container_all_medias article{
