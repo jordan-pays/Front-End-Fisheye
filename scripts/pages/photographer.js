@@ -28,6 +28,7 @@ class Photographer {
     
     displayMedia(){
         const mediaContainer = document.querySelector(".container_all_medias");
+        mediaContainer.textContent = "";
         this.medias.forEach((media, i )=> {
             media.index = i;
             const mediaModel = new mediaFactory(media);
@@ -76,7 +77,7 @@ class Photographer {
 async function init() {
     let photographerId = $_GET('id');
     const photographerInfo = await getPhotographerById(photographerId);
-    const medias = await getMediaByPhotographerId(photographerId);
+    const medias = await getMediaByPhotographerIdSortByPopularity(photographerId);
     const photographer = new Photographer(photographerInfo,medias);
     photographer.displayAll();
 };

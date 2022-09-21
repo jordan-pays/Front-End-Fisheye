@@ -23,15 +23,28 @@ class Filtre {
             active_chevron.addEventListener("click", () => this.changeChevron(active_chevron, chevron))
             item_filtre.append(active_chevron);
         } else {
-            item_filtre.addEventListener("click", () => {
+            item_filtre.addEventListener("click", async () => {
                 this.date.isActif = false;
                 this.titre.isActif = false;
                 this.popularite.isActif = false;
+                let photographerId = $_GET('id');
                 if (this.popularite.id == item.id) {
+                    const photographerInfo = await getPhotographerById(photographerId);
+                    const medias = await getMediaByPhotographerIdSortByPopularity(photographerId);
+                    const photographer = new Photographer(photographerInfo, medias);
+                    photographer.displayMedia();
                     this.popularite.isActif = true;
                 } else if (this.date.id == item.id) {
+                    const photographerInfo = await getPhotographerById(photographerId);
+                    const medias = await getMediaByPhotographerIdSortByDate(photographerId);
+                    const photographer = new Photographer(photographerInfo, medias);
+                    photographer.displayMedia();
                     this.date.isActif = true;
                 } else {
+                    const photographerInfo = await getPhotographerById(photographerId);
+                    const medias = await getMediaByPhotographerIdSortByTitle(photographerId);
+                    const photographer = new Photographer(photographerInfo, medias);
+                    photographer.displayMedia();
                     this.titre.isActif = true;
                 }
                 this.styleFiltre()
@@ -65,19 +78,25 @@ class Filtre {
 
     styleFiltre() {
         const container_filtre = document.getElementById("container_filtre");
-        const arr = container_filtre.children;
-        console.log(arr)
-        for (let i = 0; i < arr.length; i++) {
-            arr.item(i).remove()
-        }
-        console.log("--------------------------",arr)
+        container_filtre.textContent = "";
+        container_filtre.setAttribute("style", "height:55px")
         const popularite = this.construcFiltre(this.popularite)
         const date = this.construcFiltre(this.date)
         const titre = this.construcFiltre(this.titre)
+        if (this.popularite.isActif) {
+            container_filtre.appendChild(popularite)
+            container_filtre.appendChild(date)
+            container_filtre.appendChild(titre)
+        } else if (this.date.isActif) {
+            container_filtre.appendChild(date)
+            container_filtre.appendChild(popularite)
+            container_filtre.appendChild(titre)
+        } else if (this.titre.isActif) {
+            container_filtre.appendChild(titre)
+            container_filtre.appendChild(date)
+            container_filtre.appendChild(popularite)
+        }
 
-        container_filtre.appendChild(popularite)
-        container_filtre.appendChild(date)
-        container_filtre.appendChild(titre)
     }
 }
 
@@ -87,23 +106,3 @@ function init() {
 }
 
 init()
-
-// const trait = document.getElementsByClassName("trait");
-// const item_filtre = document.getElementsByClassName("item_filtre")
-// const popularite = document.getElementById("popularite")
-// const date = document.getElementById("date");
-// const titre = document.getElementById("titre");
-// let active_filtre = document.getElementsByClassName("active_filtre").item(0);
-// const active_chevron =  document.createElement("div");
-// const chevron = document.createElement("i");
-// function init() {
-//     active_filtre = document.getElementsByClassName("active_filtre").item(0);
-//
-// }
-
-
-// popularite.addEventListener("click",()=>changeFiltre(popularite))
-// date.addEventListener("click",()=>changeFiltre(date))
-// titre.addEventListener("click",()=>changeFiltre(titre))
-
-// init()

@@ -23,7 +23,7 @@ async function getPhotographerById (id) {
     return data
 }
 
-async function getMediaByPhotographerId(id){
+async function getMediaByPhotographerIdSortByPopularity(id){
     const data = await fetch("../data/photographers.json").then(response => {
         return response.json();
     }).then(jsondata => { 
@@ -33,7 +33,37 @@ async function getMediaByPhotographerId(id){
                 array_media.push(jsondata.media[i])
             }
         }
-        return array_media
+        return array_media.sort(comparePopularity)
+    });
+    return data
+}
+
+async function getMediaByPhotographerIdSortByDate(id){
+    const data = await fetch("../data/photographers.json").then(response => {
+        return response.json();
+    }).then(jsondata => { 
+        let array_media = [];
+        for(let i=0; i<jsondata.media.length; i++){
+            if(jsondata.media[i].photographerId == id){
+                array_media.push(jsondata.media[i])
+            }
+        }
+        return array_media.sort(compareDate)
+    });
+    return data
+}
+
+async function getMediaByPhotographerIdSortByTitle(id){
+    const data = await fetch("../data/photographers.json").then(response => {
+        return response.json();
+    }).then(jsondata => { 
+        let array_media = [];
+        for(let i=0; i<jsondata.media.length; i++){
+            if(jsondata.media[i].photographerId == id){
+                array_media.push(jsondata.media[i])
+            }
+        }
+        return array_media.sort((media1,media2)=>media1.title.localeCompare(media2.title))
     });
     return data
 }
@@ -69,4 +99,24 @@ function $_GET(param) {
 		return vars[param] ? vars[param] : null;	
 	}
 	return vars;
+}
+
+function comparePopularity(media1,media2){
+    if(media1.likes > media2.likes){
+        return -1;
+    }else if(media1.likes < media2.likes){
+        return 1;
+    }else{
+        return 0;
+    }
+}
+
+function compareDate(media1,media2){
+    if(media1.date > media2.date){
+        return -1;
+    }else if(media1.date < media2.date){
+        return 1;
+    }else{
+        return 0;
+    }
 }

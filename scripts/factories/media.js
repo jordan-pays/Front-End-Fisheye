@@ -56,7 +56,7 @@ class mediaFactory {
         } else {
             counter_likes.textContent = parseInt(counter_likes.textContent, 10) + this.likes;
         }
-
+            
         h4.textContent = this.likes;
         icon_heart.setAttribute("class", "fa-regular fa-heart");
         heart.setAttribute("class", "heart");
