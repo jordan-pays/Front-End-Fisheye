@@ -51,7 +51,7 @@ class mediaFactory {
         })
 
         const counter_likes = document.querySelector(".count_likes");
-        if (counter_likes.textContent.length == 0) {
+        if (counter_likes.textContent.length == 0) {    
             counter_likes.textContent = this.likes;
         } else {
             counter_likes.textContent = parseInt(counter_likes.textContent, 10) + this.likes;

@@ -10,6 +10,8 @@ class Index{
             const photographerModel = new photographerFactory(photographer);
             const userCardDOM = photographerModel.getUserCardDOM();
             userCardDOM.addEventListener("click",()=>{window.location.href=`photographer.html?id=${photographer.id}`})
+            userCardDOM.addEventListener("keypress",(e)=>{if(e.key == "Enter"){window.location.href=`photographer.html?id=${photographer.id}`}})
+            userCardDOM.setAttribute("tabindex", 0)
             photographersSection.appendChild(userCardDOM);
         });
     }

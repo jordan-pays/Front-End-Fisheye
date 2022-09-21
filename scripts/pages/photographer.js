@@ -8,22 +8,35 @@ class Photographer {
     displayInfoPhotographer() {
         const photographerInfo = document.querySelector(".container_info");
         const photographerPhoto = document.querySelector(".container_photo");
+
         const h2 = document.createElement( 'h2' );
+        h2.setAttribute("tabindex", 0)
         h2.textContent = this.photographer.name;
+
         const h3 = document.createElement( 'h3' );
         h3.textContent = this.photographer.city + ", " + this.photographer.country;
+        h3.setAttribute("tabindex", 0)
+
         const h4 = document.createElement( 'h4' );
         h4.textContent = this.photographer.tagline;
+        h4.setAttribute("tabindex", 0)
+
         photographerInfo.appendChild(h2);
         photographerInfo.appendChild(h3);
         photographerInfo.appendChild(h4);
+
         const img = document.createElement( 'img' );
         const picture = `assets/photographers/${this.photographer.portrait}`;
         img.setAttribute("src", picture)
         img.setAttribute("alt", `photo de profile de ${this.photographer.name}`)
+        img.setAttribute("tabindex", 0)
+
         photographerPhoto.appendChild(img);
         const prices = document.querySelector(".prices");
-        prices.textContent = this.photographer.price + "€/jour"
+        prices.textContent = this.photographer.price + "€/jour";
+
+        const container_fixed = document.querySelector(".container_fixed");
+        container_fixed.setAttribute("tabindex", 0)
     };
     
     displayMedia(){
@@ -45,7 +58,6 @@ class Photographer {
        const container_media = document.querySelector(".container_media_modal");
         const mediaModal = new mediaFactory(this.medias[index]);
         const userCardDOM = mediaModal.getModalCard()
-        console.log(userCardDOM)
         if(container_media.childElementCount == 0){
             container_media.appendChild(userCardDOM)
         }else {
