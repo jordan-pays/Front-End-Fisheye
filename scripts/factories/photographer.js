@@ -12,10 +12,10 @@ class photographerFactory {
 
     getUserCardDOM(){
         const article = document.createElement( 'article' );
-        article.setAttribute("id", this.id)
+        article.setAttribute("id", this.id);
         const img = document.createElement( 'img' );
-        img.setAttribute("tabindex", 0)
-        img.setAttribute("src", this.picture)
+        img.tabIndex = 0;
+        img.setAttribute("src", this.picture);
         img.setAttribute("alt", `photo de profile de ${this.name}`)
 
         const h2 = document.createElement( 'h2' );

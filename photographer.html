@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
@@ -12,22 +12,22 @@
   <body>
     <header>
       <a href="index.html">
-        <img src="assets/images/logo.png" class="logo" />
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
       </a>
     </header>
     <main id="main">
       <div class="photograph-header">
         <div class="container_info">
         </div>
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" aria-label="Contact Me" onclick="displayModal()">Contactez-moi</button>
         <div class="container_photo">
         </div>
       </div>
 
       <div class="filtre">
-        <h4  tabindex="7">Trier Par</h4>
-        <div id="container_filtre" class="container_filtre">
-        </div>
+        <h4  tabindex="0">Trier Par</h4>
+        <ul id="container_filtre" class="container_filtre" tabindex="0">
+        </ul>
       </div>
 
       <div class="container_all_medias">
@@ -44,17 +44,17 @@
           </h3>
       </div>
     </main>
-    <div id="media_modal">
+    <div id="media_modal" aria-label="image closeup view">
 			<div class="modal">
 				<div>
-          <img src="assets/icons/close_brown.svg" class="close" onclick="closeMediaModal()"/>
-          <div id="previous">
+          <img src="assets/icons/close_brown.svg" id="close" alt="close dialog" onclick="closeMediaModal()"/>
+          <div id="previous" aria-label="Previous image">
             <i class="fa-solid fa-chevron-left"></i>
           </div>
           <div class="container_media_modal">
 
           </div>
-          <div id="next">
+          <div id="next" aria-label="Next image">
             <i class="fa-solid fa-chevron-right"></i>
           </div>
         </div>
@@ -63,27 +63,30 @@
     <div id="contact_modal">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <div class="container_contact">
+            <h2>Contactez-moi</h2>
+            <h2 id="header_modal"></h2>
+          </div>
+          <img src="assets/icons/close.svg" id="close_contact" alt="close contact form" onclick="closeModal()"  />
         </header>
-				<form>
+				<form id="contact_form">
 					<div>
-						<label>Prénom</label>
-						<input type="text"/>
+						<label for="prenom">Prénom</label>
+						<input id="prenom" name="prenom" type="text"/>
 					</div>
           <div>
-						<label>Nom</label>
-						<input type="text" />
+						<label for="nom">Nom</label>
+						<input id="nom" name="nom" type="text" />
 					</div>
           <div>
-						<label>Email</label>
-						<input type="email" />
+						<label for="email">Email</label>
+						<input id="email" name="email" type="email" />
 					</div>
           <div>
-						<label>Votre  message</label>
-						<textarea style="height: 170px;width:100%; resize : none;" ></textarea>
+						<label for="message">Votre  message</label>
+						<textarea id="message" name="message" style="height: 170px;width:100%; resize : none;" ></textarea>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <button id="submit" name="submit" class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>

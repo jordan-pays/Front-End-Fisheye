@@ -31,6 +31,8 @@ class mediaFactory {
         const h4 = document.createElement('h4');
         const heart = document.createElement('a');
         const icon_heart = document.createElement('i');
+        heart.tabIndex = "likes";
+        heart.tabIndex = 0;
 
         heart.addEventListener("click", async () => {
             if (this.myLikes == undefined || this.myLikes == false) {
@@ -50,13 +52,34 @@ class mediaFactory {
             }
         })
 
+        heart.addEventListener("keypress", async (event) => {
+            if (event.key == "Enter") {
+                if (this.myLikes == undefined || this.myLikes == false) {
+                    this.likes += 1;
+                    this.myLikes = true;
+                    icon_heart.setAttribute("class", "fa-solid fa-heart");
+                    heart.setAttribute("class", "heart--active");
+                    h4.textContent = this.likes;
+                    counter_likes.textContent = parseInt(counter_likes.textContent, 10) + 1;
+                } else {
+                    this.likes -= 1;
+                    this.myLikes = false;
+                    icon_heart.setAttribute("class", "fa-regular fa-heart");
+                    heart.setAttribute("class", "heart");
+                    h4.textContent = this.likes;
+                    counter_likes.textContent = parseInt(counter_likes.textContent, 10) - 1;
+                }
+            }
+
+        })
+
         const counter_likes = document.querySelector(".count_likes");
-        if (counter_likes.textContent.length == 0) {    
+        if (counter_likes.textContent.length == 0) {
             counter_likes.textContent = this.likes;
         } else {
             counter_likes.textContent = parseInt(counter_likes.textContent, 10) + this.likes;
         }
-            
+
         h4.textContent = this.likes;
         icon_heart.setAttribute("class", "fa-regular fa-heart");
         heart.setAttribute("class", "heart");
@@ -84,9 +107,7 @@ class mediaFactory {
 
     getVideoCardDOM() {
         const vid = document.createElement('video');
-        vid.setAttribute("muted",true);
-        vid.setAttribute("autoplay",true);
-        vid.setAttribute("loop",true);
+        vid.setAttribute("controls", true);
         vid.setAttribute("id", `media_${this.index}`);
         vid.setAttribute("oncontextmenu", false)
         const src = document.createElement('source');
@@ -98,13 +119,13 @@ class mediaFactory {
     }
 
     getModalCard() {
-       let media;
-       if (this.image != undefined) {
-           media = this.getImageCardDOM();
-       } else if (this.video != undefined) {
-           media = this.getVideoCardDOM();
-       }
-       return media
+        let media;
+        if (this.image != undefined) {
+            media = this.getImageCardDOM();
+        } else if (this.video != undefined) {
+            media = this.getVideoCardDOM();
+        }
+        return media
     }
 
 }

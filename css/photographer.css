@@ -13,7 +13,7 @@
 #contact_modal .modal {
     background-color: #DB8876;
     width:50%;
-
+    flex: 1;
 }
 
 main{
@@ -23,9 +23,22 @@ main{
 #media_modal .modal {
     background-color: white;
     width:1200px;
+    flex: 1;
+
 
 }
 
+.container_contact{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: flex-start;
+}
+
+
+.container_contact h2 {
+    margin: 0px;
+}
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
@@ -35,15 +48,15 @@ main{
     padding: 50px;
 }
 
-.photograph-header .container_info h2 {
+.photograph-header .container_info h1 {
     color: #D3573C;
     font-size: 64px;
 }
-.photograph-header .container_info h3 {
+.photograph-header .container_info h2 {
     color: #901C1C;
     font-size: 24px;
 }
-.photograph-header .container_info h4 {
+.photograph-header .container_info h3 {
     font-size: 18px;
     color: #525252;
 }
@@ -98,7 +111,7 @@ main{
     margin: auto;
 }
 
-.close {
+#close {
     position: absolute;
     top:40px;
     right: 40px;
@@ -122,8 +135,11 @@ main{
 }
 
 .modal header {
+    align-items: flex-start;
     justify-content: space-between;
     width: 100%;
+    display: flex;
+    flex: 1;
 }
 
 .modal header img {
@@ -161,6 +177,14 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+    font-size: 35px;
+}
+
+form textarea {
+    border: none;
+    border-radius: 5px;
+    font-size: 35px;
+
 }
 
 .filtre h4 {
@@ -194,6 +218,7 @@ form input {
     justify-content: space-between;
     position: absolute;
     top:0px;
+    margin: 0px;
     left: 85px;
     z-index: 200;
 }
