@@ -25,8 +25,13 @@ class Filtre {
 
             active_chevron.append(chevron);
 
-            item_filtre.addEventListener("click", () => this.changeChevron(active_chevron, chevron))
-            item_filtre.addEventListener("keypress", (e) => { if (e.key == "Enter") { this.changeChevron(active_chevron, chevron) } })
+            item_filtre.setAttribute("role","button")
+            item_filtre.setAttribute("aria-haspopup","listbox")
+            item_filtre.setAttribute("aria-expanded","false")
+
+            item_filtre.addEventListener("click", () => {this.changeChevron(active_chevron, chevron); item_filtre.setAttribute("aria-expanded","true")})
+            item_filtre.addEventListener("keypress", (e) => { if (e.key == "Enter") { this.changeChevron(active_chevron, chevron); }item_filtre.setAttribute("aria-expanded","true")})
+            
             item_filtre.append(active_chevron);
         } else {
             item_filtre.addEventListener("click", async () => {

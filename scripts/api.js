@@ -9,16 +9,8 @@ async function getPhotographerById (id) {
     const data = await fetch("../data/photographers.json").then(response => {
         return response.json();
     }).then(jsondata => { 
-        let i=0;
-        let estTrouve = false;
-        while ( i<jsondata.photographers.length && !estTrouve) {
-            if(jsondata.photographers[i].id == id){
-                estTrouve = true;
-            }else{
-                i++;
-            }
-        }
-        return jsondata.photographers[i]
+        let photographer = jsondata.photographers.filter(photographer => photographer.id == id)
+        return photographer[0]
     });
     return data
 }
@@ -27,12 +19,7 @@ async function getMediaByPhotographerIdSortByPopularity(id){
     const data = await fetch("../data/photographers.json").then(response => {
         return response.json();
     }).then(jsondata => { 
-        let array_media = [];
-        for(let i=0; i<jsondata.media.length; i++){
-            if(jsondata.media[i].photographerId == id){
-                array_media.push(jsondata.media[i])
-            }
-        }
+        let array_media = jsondata.media.filter(media => media.photographerId == id )
         return array_media.sort(comparePopularity)
     });
     return data
@@ -42,12 +29,7 @@ async function getMediaByPhotographerIdSortByDate(id){
     const data = await fetch("../data/photographers.json").then(response => {
         return response.json();
     }).then(jsondata => { 
-        let array_media = [];
-        for(let i=0; i<jsondata.media.length; i++){
-            if(jsondata.media[i].photographerId == id){
-                array_media.push(jsondata.media[i])
-            }
-        }
+        let array_media = jsondata.media.filter(media => media.photographerId == id )
         return array_media.sort(compareDate)
     });
     return data
@@ -57,12 +39,7 @@ async function getMediaByPhotographerIdSortByTitle(id){
     const data = await fetch("../data/photographers.json").then(response => {
         return response.json();
     }).then(jsondata => { 
-        let array_media = [];
-        for(let i=0; i<jsondata.media.length; i++){
-            if(jsondata.media[i].photographerId == id){
-                array_media.push(jsondata.media[i])
-            }
-        }
+        let array_media = jsondata.media.filter(media => media.photographerId == id )
         return array_media.sort((media1,media2)=>media1.title.localeCompare(media2.title))
     });
     return data
@@ -72,16 +49,8 @@ async function getMediaByPhotographerIdAndMediaId(idMedia,idPhotographer){
     const data = await fetch("../data/photographers.json").then(response => {
         return response.json();
     }).then(jsondata => { 
-        let i=0;
-        let estTrouve = false;
-        while ( i<jsondata.media.length && !estTrouve) {
-            if(jsondata.media[i].id == idMedia && jsondata.media[i].photographerId == idPhotographer){
-                estTrouve = true;
-            }else{
-                i++;
-            }
-        }
-        return jsondata.media[i]
+        let media = jsondata.media.filter(media => media.photographerId == idPhotographer && media.id == idMedia)
+        return media[0]
     });
     return data
 }

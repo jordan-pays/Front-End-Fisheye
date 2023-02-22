@@ -13,7 +13,8 @@ class mediaFactory {
 
     getMediaCardDOM() {
         const article = document.createElement('article');
-        article.setAttribute("id", this.id)
+        article.setAttribute("id", this.id);
+
         const container_media = document.createElement('div');
         container_media.setAttribute("class", "container_media");
 
@@ -26,14 +27,15 @@ class mediaFactory {
 
         const container_media_info = document.createElement('div');
         container_media_info.setAttribute("class", "container_media_info");
+
         const h3 = document.createElement('h3');
         h3.textContent = this.title;
-        const h4 = document.createElement('h4');
-        const heart = document.createElement('a');
-        const icon_heart = document.createElement('i');
-        heart.tabIndex = "likes";
-        heart.tabIndex = 0;
 
+        const h4 = document.createElement('h4');
+
+        const heart = document.createElement('a');
+        heart.setAttribute("aria-label","likes");
+        heart.tabIndex = 0;
         heart.addEventListener("click", async () => {
             if (this.myLikes == undefined || this.myLikes == false) {
                 this.likes += 1;
@@ -81,8 +83,11 @@ class mediaFactory {
         }
 
         h4.textContent = this.likes;
+        const icon_heart = document.createElement('i');
         icon_heart.setAttribute("class", "fa-regular fa-heart");
+
         heart.setAttribute("class", "heart");
+
         const div_heart = document.createElement('div');
         div_heart.setAttribute("class", "container_heart");
 
@@ -99,9 +104,9 @@ class mediaFactory {
 
     getImageCardDOM() {
         const img = document.createElement('img');
-        img.setAttribute("src", this.url + this.image)
-        img.setAttribute("alt", `image s'intitulant ${this.title}`)
-        img.setAttribute("id", `media_${this.index}`)
+        img.setAttribute("src", this.url + this.image);
+        img.setAttribute("alt", `image s'intitulant ${this.title}`);
+        img.setAttribute("id", `media_${this.index}`);
         return img
     }
 
@@ -109,12 +114,13 @@ class mediaFactory {
         const vid = document.createElement('video');
         vid.setAttribute("controls", true);
         vid.setAttribute("id", `media_${this.index}`);
-        vid.setAttribute("oncontextmenu", false)
+        vid.setAttribute("oncontextmenu", false);
+
         const src = document.createElement('source');
-        src.setAttribute("src", this.url + this.video)
-        src.setAttribute("alt", `video s'intitulant ${this.title}`)
-        src.setAttribute("type", "video/mp4")
-        vid.appendChild(src)
+        src.setAttribute("src", this.url + this.video);
+        src.setAttribute("alt", `video s'intitulant ${this.title}`);
+        src.setAttribute("type", "video/mp4");
+        vid.appendChild(src);
         return (vid)
     }
 
@@ -125,6 +131,7 @@ class mediaFactory {
         } else if (this.video != undefined) {
             media = this.getVideoCardDOM();
         }
+        document.getElementById("title_media_modal").textContent = this.title;
         return media
     }
 
