@@ -3,6 +3,7 @@ class Photographer {
     constructor (photographer,medias){
         this.photographer = photographer;
         this.medias =medias;
+        this.index =0;
     }
     
     displayInfoPhotographer() {
@@ -52,7 +53,7 @@ class Photographer {
             mediaContainer.appendChild(userCardDOM);
             document.getElementById(`media_${i}`)?.addEventListener("click", (e) => {
                 e.preventDefault()
-                displayMediaModal()
+                displayModalMedia()
                 this.displayMediaModal(i)
             })
             document.getElementById(`media_${i}`)?.setAttribute("tabindex", 0)
@@ -62,7 +63,7 @@ class Photographer {
                     document.getElementById(`media_${i}`).currentTime = 0;
                 }
                 if(e.key == "Enter"){
-                    displayMediaModal()
+                    displayModalMedia()
                     this.displayMediaModal(i)
                 }
             })
@@ -79,77 +80,14 @@ class Photographer {
         }else {
             container_media.replaceChildren(container_media.firstChild,userCardDOM)
         }
-
-        const close = document.getElementById("close");
-        close.tabIndex = 0;
-        close.focus()
-        close.addEventListener("keypress",(e)=>{
-            if(e.key == 'Enter'){
-                closeMediaModal()
-            }
-        })
-
-        document.addEventListener('keydown',(e)=>{
-            if(e.key == 'ArrowRight'){
-                if(index==this.medias.length - 1){
-                    this.displayMediaModal(0)
-                }else {
-                    this.displayMediaModal(index +1)
-                }
-            }else if(e.key == 'ArrowLeft'){
-                if(index==0){
-                    this.displayMediaModal(this.medias.length - 1)
-                }else {
-                    this.displayMediaModal(index -1)
-                }
-            }else if(e.key == "Escape"){
-                closeMediaModal()
-            }
-        })
-
-        const previous =  document.getElementById("previous")
-        previous.addEventListener("click",()=>{
-            if(index==0){
-                this.displayMediaModal(this.medias.length - 1)
-            }else {
-                this.displayMediaModal(index -1)
-            }
-        })
-        previous.tabIndex = 0;
-        previous.addEventListener("keypress",(e)=>{
-            if(e.key == "Enter"){
-                if(index==0){
-                    this.displayMediaModal(this.medias.length - 1)
-                }else {
-                    this.displayMediaModal(index -1)
-                }
-            }
-        })
-
-        const next =  document.getElementById("next")
-        next.addEventListener("click",()=>{
-            if(index==this.medias.length - 1){
-                this.displayMediaModal(0)
-            }else {
-                this.displayMediaModal(index +1)
-            }
-        })
-        next.tabIndex = 0;
-        next.addEventListener("keypress",(e)=>{
-            if(e.key == "Enter"){
-                if(index==this.medias.length - 1){
-                    this.displayMediaModal(0)
-                }else {
-                    this.displayMediaModal(index +1)
-                }
-            }
-        })
+        this.index  = index;
     }
 
     displayAll(){
         this.displayInfoPhotographer()
         this.displayMedia()
     }
+
 }
 
 
@@ -159,6 +97,67 @@ async function init() {
     const medias = await getMediaByPhotographerIdSortByPopularity(photographerId);
     const photographer = new Photographer(photographerInfo,medias);
     photographer.displayAll();
+    
+    const close = document.getElementById("close");
+    close.addEventListener("keypress",(e)=>{
+        if(e.key == 'Enter'){
+            closeMediaModal()
+        }
+    })
+
+    document.addEventListener('keydown',(e)=>{
+        if(e.key == 'ArrowRight'){
+            if(photographer.index==photographer.medias.length - 1){
+                photographer.displayMediaModal(0)
+            }else {
+                photographer.displayMediaModal(photographer.index +1)
+            }
+        }else if(e.key == 'ArrowLeft'){
+            if(photographer.index==0){
+                photographer.displayMediaModal(photographer.medias.length - 1)
+            }else {
+                photographer.displayMediaModal(photographer.index -1)
+            }
+        }else if(e.key == "Escape"){
+            closeMediaModal()
+        }
+    })
+
+    const previous =  document.getElementById("previous")
+    previous.addEventListener("click",()=>{
+        if(photographer.index==0){
+            photographer.displayMediaModal(photographer.medias.length - 1)
+        }else {
+            photographer.displayMediaModal(photographer.index -1)
+        }
+    })
+    previous.addEventListener("keypress",(e)=>{
+        if(e.key == "Enter"){
+            if(photographer.index==0){
+                photographer.displayMediaModal(photographer.medias.length - 1)
+            }else {
+                photographer.displayMediaModal(photographer.index -1)
+            }
+        }
+    })
+
+    const next =  document.getElementById("next")
+    next.addEventListener("click",()=>{
+        if(photographer.index==photographer.medias.length - 1){
+            photographer.displayMediaModal(0)
+        }else {
+            photographer.displayMediaModal(photographer.index +1)
+        }
+    })
+    next.addEventListener("keypress",(e)=>{
+        if(e.key == "Enter"){
+            if(photographer.index==photographer.medias.length - 1){
+                photographer.displayMediaModal(0)
+            }else {
+                photographer.displayMediaModal(photographer.index +1)
+            }
+        }
+    })
 }
 
 init();

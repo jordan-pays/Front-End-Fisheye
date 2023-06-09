@@ -137,6 +137,10 @@ main {
     color: #911C1C;
 }
 
+#previous:hover,#next:hover {
+    cursor: pointer;
+}
+
 .modal header {
     align-items: flex-start;
     justify-content: space-between;
